@@ -1,0 +1,2 @@
+export const CREATE_STREAM = "CREATE_STREAM";
+export const GET_CATEGORIES = "GET_CATEGORIES";
