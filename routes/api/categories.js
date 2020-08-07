@@ -6,7 +6,7 @@ const Category = require('../../models/Category')
 // @route GET api/items
 // @desc get all items
 // @access public
-router.get('/', auth, (req, res) => {
+router.get('/', (req, res) => {
     Category.find()
         .then(category => res.json(category))
 })
