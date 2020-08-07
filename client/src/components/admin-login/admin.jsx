@@ -1,65 +1,43 @@
-import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
-import { connect } from "react-redux";
-import { LoginUser } from "../../actions/index";
-import "../input/input-styles.css";
-class UserLogin extends Component {
-  renderError({ error, touched }) {
-    if (touched && error) {
-      return (
-        <div>
-          <div className="error">{error}</div>
-        </div>
-      );
+import React, { Component } from 'react'
+import { FormLabel, FormInput, Button } from './admin.styles'
+export default class Admin extends Component {
+  state = {
+    email: '',
+    password: '',
+    message: null
+  }
+  onChange = (event) => { this.setState({ [event.target.name]: event.target.value }) }
+  onSubmit = (event) => {
+    event.preventDefault()
+    const { email, password } = this.state
+    const user = {
+      email,
+      password
     }
   }
-  renderInput = ({ input, label, meta, type }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    return (
-      <div>
-        <div className={className}>
-          <label>{label}</label>
-          <input {...input} autoComplete="off" type={type} />
-          {this.renderError(meta)}
-        </div>
-      </div>
-    );
-  };
-  onSubmit = (formValues) => {
-    this.props.LoginUser(formValues);
-  };
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Field
+      <form onSubmit={this.onSubmit}>
+        <FormLabel>
+          Username
+        </FormLabel>
+        <FormInput
+          type="email"
           name="email"
-          type="text"
-          component={this.renderInput}
-          label="Enter Username"
-        />
-        <Field
-          name="password"
+          id="email"
+          autoComplete="off"
+          onChange={this.onChange} />
+        <FormLabel>
+          Password
+        </FormLabel>
+        <FormInput
           type="password"
-          component={this.renderInput}
-          label="Enter Password"
+          name="password"
+          id="password"
+          onChange={this.onChange}
         />
-        <button className="n-button">Log-in</button>
+        <Button>Log-in</Button>
       </form>
-    );
+    )
   }
 }
-const validate = (formValues) => {
-  const errors = {};
-  if (!formValues.email) {
-    errors.email = "you must enter username";
-  }
-  if (!formValues.password) {
-    errors.password = "you must enter password";
-  }
-  return errors;
-};
-
-const formWrapped = reduxForm({ form: "userLogin", validate: validate })(
-  UserLogin
-);
-export default connect(null, { LoginUser })(formWrapped);
