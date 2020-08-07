@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { GetCategories } from "../../actions/index";
+import { GetCategories } from "../../actions/categoriesAction";
 import Card from "../category-card/card";
 import { Slogan, CategoryContainer } from "./categories.styles";
 class Categories extends Component {
@@ -10,9 +10,9 @@ class Categories extends Component {
   renderCards() {
     var data = this.props.categories
     if (data) {
-      return data.map(category => {
+      return data.map(el => {
         return (
-          <Card Title={category.categoryName} />
+          <Card Title={el.category} />
         )
       })
     }
@@ -31,6 +31,6 @@ class Categories extends Component {
 const mapStateToProps = (state) => {
   return { categories: state.Categories[0] };
 };
-export default connect(mapStateToProps, { GetCategories: GetCategories })(
+export default connect(mapStateToProps, { GetCategories })(
   Categories
 );
