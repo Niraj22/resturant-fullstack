@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom'
 import { Container, Category, LinkMenu } from "./card.styles";
 import { GiFruitBowl, GiManualJuicer, GiCoffeeCup } from "react-icons/gi";
 import { MdRestaurantMenu } from "react-icons/md";
