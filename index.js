@@ -1,27 +1,26 @@
-const express = require("express")
-const helmet = require("helmet");
-var morgan = require('morgan')
-const app = express()
-const dotenv = require('dotenv')
+const express = require('express')
 const mongoose = require('mongoose')
-app.use(helmet());
-//import routes
-const authRoute = require('./routes/auth')
-const usersRoute = require('./routes/getUsers')
-const categoryRoute = require('./routes/categories')
-dotenv.config();
+const path = require('path')
+const app = express()
 
-//connect to db
-mongoose.connect(process.env.DB_CONNECT,
-    { useNewUrlParser: true, useUnifiedTopology: true },
-    () => {
-        console.log('connected to database')
-    })
-//Middlewares
+//body-parser
 app.use(express.json())
-app.use(morgan('tiny'))
-//routes middlewares
-app.use('/api/user', authRoute)
-app.use('/api/allusers', usersRoute)
-app.use('/api/categories', categoryRoute)
-app.listen(5001)
+//DB config
+mongoose.connect('mongodb://localhost/resturant',
+    { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log("connected to database"))
+    .catch((error) => console.log("not connected to db : ", error))
+
+//use routes
+app.use('/api/categories', require('./routes/api/categories'))
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/auth', require('./routes/api/auth'))
+//Serve our static assets
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+    })
+}
+const port = process.env.PORT || 5001
+app.listen(port, () => { console.log(`server started on port ${port}`) }) 

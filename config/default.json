@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb-cloudserver-link",
+  "jwtSecret": "nl_ohjwqcios"
+}
