@@ -8,7 +8,7 @@ export default function Start(props) {
       <Slogan>Welcome to XYZ</Slogan>
       <Details>"The pleasure of variety on your plate"</Details>
       <Welcome style={{ height: "37rem", width: "35rem" }} />
-      <CtaButton to="/adminpanel">Login as admin</CtaButton>
+      <CtaButton to="/adminpanel">Continue as admin</CtaButton>
       <CtaButton to="/categories">Continue as customer</CtaButton>
     </Container>
   );
