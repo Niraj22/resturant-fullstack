@@ -4,13 +4,13 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
+import { loadUser } from './actions/authActions'
 import Start from "./components/start-screen/start";
-import Dashboard from './components/dashboard/dashboard'
+import Dashboard from './components/admin-dashboard/dashboard'
 import Menu from "./components/menu/menu";
 import AdminPage from './components/admin-login-page/admin-page'
 import Categories from "./components/categories/categories";
 import "./App.css";
-import { loadUser } from './actions/authActions'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
