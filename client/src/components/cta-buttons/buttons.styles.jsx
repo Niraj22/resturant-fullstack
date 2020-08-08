@@ -25,6 +25,7 @@ export const ButtonContainer = styled(Link)`
     top: 19%;
     right: 7%;
     bottom: 0;
+    text-decoration: none;
   }
   &:hover {
     background: linear-gradient(10deg, #bc2b55, #fd6000);
@@ -32,9 +33,12 @@ export const ButtonContainer = styled(Link)`
     border-radius: 10px;
     box-shadow: 0px 6px 15px #bc2b21;
     padding: 1rem 2rem 1rem 1rem;
+    text-decoration: none;
+    color: #ffffff;
     &::after {
       opacity: 1;
       transition: all 0.5s;
+      text-decoration: none;
     }
   }
 `;
