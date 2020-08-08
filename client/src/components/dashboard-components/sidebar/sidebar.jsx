@@ -11,7 +11,7 @@ class Sidebar extends Component {
                         <Lists>
                             <Items to='/admindashboard'>
                                 <div>
-                                    <FaHome size="2.5rem" style={this.format} color="#9493ac" />
+                                    <FaHome size="2.5rem" style={this.format} color="#40414d" />
                                 </div>
                                 <Title>
                                     Dashboard
@@ -19,7 +19,7 @@ class Sidebar extends Component {
                             </Items>
                             <Items to='/admincategories'>
                                 <div>
-                                    <FaFolder size="2.5rem" style={this.format} color="#9493ac" />
+                                    <FaFolder size="2.5rem" style={this.format} color="#40414d" />
                                 </div>
                                 <Title>
                                     Categories
@@ -27,7 +27,7 @@ class Sidebar extends Component {
                             </Items>
                             <Items to='/adminitems' >
                                 <div>
-                                    <FaConciergeBell size="2.5rem" style={this.format} color="#9493ac" />
+                                    <FaConciergeBell size="2.5rem" style={this.format} color="#40414d" />
                                 </div>
                                 <Title>
                                     Items
@@ -35,7 +35,7 @@ class Sidebar extends Component {
                             </Items>
                             <Items to='/adminusers'>
                                 <div>
-                                    <FaUserAlt size="2.5rem" style={this.format} color="#9493ac" />
+                                    <FaUserAlt size="2.5rem" style={this.format} color="#40414d" />
                                 </div>
                                 <Title>
                                     Users
@@ -43,7 +43,7 @@ class Sidebar extends Component {
                             </Items>
                             <Items to='/adminorders'>
                                 <div>
-                                    <FaBriefcase size="2.5rem" style={this.format} color="#9493ac" />
+                                    <FaBriefcase size="2.5rem" style={this.format} color="#40414d" />
                                 </div>
                                 <Title>
                                     Placed orders
