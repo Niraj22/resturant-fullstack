@@ -3,7 +3,7 @@ export const Container = styled.div`
 display:flex;
 `
 export const Page = styled.div`
-width:100%;
+position:relative;
+width:100vw;
 height:100vh;
-padding:1rem;
 `
