@@ -17,7 +17,7 @@ class Sidebar extends Component {
                                     Dashboard
                                 </Title>
                             </Items>
-                            <Items to='/admincategories'>
+                            <Items to='/dashboard/admincategories'>
                                 <div>
                                     <FaFolder size="2.5rem" style={this.format} color="#40414d" />
                                 </div>
