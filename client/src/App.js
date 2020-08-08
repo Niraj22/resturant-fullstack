@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
@@ -10,7 +10,6 @@ import Dashboard from './components/admin-dashboard/dashboard'
 import Menu from "./components/menu/menu";
 import AdminPage from './components/admin-login-page/admin-page'
 import Categories from "./components/categories/categories";
-import AdminCat from './components/dashboard-components/admin-categories/adminCat.jsx'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -25,14 +24,15 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <Route exact path="/" component={Start} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/admincategories" component={AdminCat} />
-          <Route exact path="/admin" component={AdminPage} />
-          <Route exact path="/categories" component={Categories} />
-          <Route exact path="/menu" component={Menu} />
-        </div>
+        <BrowserRouter>
+          <div className="App">
+            <Route exact path="/" component={Start} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/admin" component={AdminPage} />
+            <Route exact path="/categories" component={Categories} />
+            <Route exact path="/menu" component={Menu} />
+          </div>
+        </BrowserRouter>
       </Provider>
     )
   }
