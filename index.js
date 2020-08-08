@@ -2,9 +2,11 @@ const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const app = express()
-
+const helmet = require('helmet')
 //body-parser
 app.use(express.json())
+//use helmet
+app.use(helmet())
 //DB config
 mongoose.connect('mongodb://localhost/resturant',
     { useNewUrlParser: true, useUnifiedTopology: true })
