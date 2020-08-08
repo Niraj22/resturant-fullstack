@@ -10,7 +10,9 @@ import Dashboard from './components/admin-dashboard/dashboard'
 import Menu from "./components/menu/menu";
 import AdminPage from './components/admin-login-page/admin-page'
 import Categories from "./components/categories/categories";
+import AdminCat from './components/dashboard-components/admin-categories/adminCat.jsx'
 import "./App.css";
+import 'bootstrap/dist/css/bootstrap.min.css'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
@@ -26,6 +28,7 @@ class App extends Component {
         <div className="App">
           <Route exact path="/" component={Start} />
           <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/admincategories" component={AdminCat} />
           <Route exact path="/admin" component={AdminPage} />
           <Route exact path="/categories" component={Categories} />
           <Route exact path="/menu" component={Menu} />
