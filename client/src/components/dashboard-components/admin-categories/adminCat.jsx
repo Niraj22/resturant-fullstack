@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { GetCategories } from "../../../actions/categoriesAction";
+import { MdDelete } from "react-icons/md";
 import { ContainerAll, HeadContainer, ButtonAdd, TextContainer, listContainer, List, Category, Icon } from './adminCat.styles'
 class AdminCat extends Component {
     componentDidMount() {
@@ -19,7 +20,9 @@ class AdminCat extends Component {
                             this.props.categories.map(({ _id, category }) => (
                                 <List key={_id}>
                                     <Category>{category}</Category>
-                                    <Icon>X</Icon>
+                                    <Icon>
+                                        <MdDelete color="#40414d" size="2rem" />
+                                    </Icon>
                                 </List>
                             ))}
                     </listContainer>

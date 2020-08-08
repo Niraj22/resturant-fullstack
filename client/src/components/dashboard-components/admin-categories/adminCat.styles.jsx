@@ -2,12 +2,15 @@ import styled from 'styled-components'
 export const ContainerAll = styled.div`
 margin:3rem;
 text-align:center;
+position:relative;
 `
 export const HeadContainer = styled.div`
-width:92vw;
 display:flex;
 justify-content:space-between;
-align-content:center;
+align-items:center;
+ @media (max-width: 820px) {
+    flex-direction:column;
+  }
 `
 export const TextContainer = styled.div`
 font-size:1.7rem;
@@ -20,13 +23,13 @@ export const ButtonAdd = styled.button`
   font-family: inherit;
   text-decoration: none;
   text-align: center;
-  width: 12rem;
+  width: 14rem;
   color: #ffffff;
   font-weight: lighter;
   background: linear-gradient(10deg, #fd6000, #bc2b55);
   cursor: pointer;
   font-size: 1.4rem;
-  padding: 0,0.5rem;
+  padding: 0,0.9rem;
   border: 0;
   transition: all 0.5s;
   border-radius: 10px;
@@ -36,6 +39,9 @@ export const ButtonAdd = styled.button`
   &:hover {
     background: linear-gradient(10deg, #bc2b55, #fd6000);
     transition: all 0.5s;
+  }
+   @media (max-width: 820px) {
+   margin-top:1rem;
   }
 `
 export const ListContainer = styled.div`
