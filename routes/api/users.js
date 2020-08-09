@@ -33,5 +33,13 @@ router.post('/', auth, (req, res) => {
             })
         })
 })
+// @route delete api/items
+// @desc delete an  item
+// @access private
+router.delete('/:id', auth, (req, res) => {
+    const user = User.findById(req.params.id)
+        .then(user => user.remove()).then(() => res.json({ success: true }))
+        .catch(() => res.status(404).json({ success: false }))
+})
 
 module.exports = router
