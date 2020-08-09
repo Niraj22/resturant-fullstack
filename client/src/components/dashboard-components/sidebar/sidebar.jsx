@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Container, Bar, Ulist, Lists, Items, Title } from './sidebar.styles'
 import { connect } from 'react-redux'
 import { logout } from '../../../actions/authActions'
-import { FaHome, FaBriefcase, FaConciergeBell, FaUserCircle, FaFolder, FaUserAlt, FaHistory } from "react-icons/fa";
+import { FaHome, FaBriefcase, FaConciergeBell, FaFolder, FaUserAlt, FaHistory } from "react-icons/fa";
 const Sidebar = (props) => {
     const format = { marginRight: "1rem" }
     return (
@@ -19,20 +19,12 @@ const Sidebar = (props) => {
                                 Dashboard
                                 </Title>
                         </Items>
-                        <Items to='/dashboard/admincategories'>
+                        <Items to='/admincategories'>
                             <div>
                                 <FaFolder size="2.5rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Categories
-                                </Title>
-                        </Items>
-                        <Items to='/adminitems' >
-                            <div>
-                                <FaConciergeBell size="2.5rem" style={format} color="#40414d" />
-                            </div>
-                            <Title>
-                                Items
                                 </Title>
                         </Items>
                         <Items to='/adminusers'>
@@ -41,6 +33,14 @@ const Sidebar = (props) => {
                             </div>
                             <Title>
                                 Users
+                                </Title>
+                        </Items>
+                        <Items to='/adminitems' >
+                            <div>
+                                <FaConciergeBell size="2.5rem" style={format} color="#40414d" />
+                            </div>
+                            <Title>
+                                Items
                                 </Title>
                         </Items>
                         <Items to='/adminorders'>
