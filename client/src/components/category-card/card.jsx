@@ -6,22 +6,22 @@ import { RiCake3Line } from "react-icons/ri";
 import { IoMdBeer } from "react-icons/io";
 export default class Card extends Component {
   renderList() {
-    if (this.props.Title === "Appetizers") {
+    if (this.props.Title === "appetizers") {
       return <GiFruitBowl size="12rem" />;
     }
-    if (this.props.Title === "Breakfast") {
+    if (this.props.Title === "breakfast") {
       return <GiCoffeeCup size="12rem" />;
     }
-    if (this.props.Title === "Main-Menu") {
+    if (this.props.Title === "main-Menu") {
       return <MdRestaurantMenu size="12rem" />;
     }
-    if (this.props.Title === "Dessert") {
+    if (this.props.Title === "dessert") {
       return <RiCake3Line size="12rem" />;
     }
-    if (this.props.Title === "Special") {
+    if (this.props.Title === "special") {
       return <GiManualJuicer size="12rem" />;
     }
-    if (this.props.Title === "Beverage") {
+    if (this.props.Title === "beverage") {
       return <IoMdBeer size="12rem" />;
     }
     else {
