@@ -6,8 +6,10 @@ import {
     AUTH_ERROR,
     LOGIN_SUCCESS,
     LOGIN_FAIL,
+    LOGOUT_SUCCESS
 } from './types'
-//check token and load user
+
+//*check token and load user
 export const loadUser = () => (dispatch, getState) => {
     //user loading
     dispatch({ type: USER_LOADING })
@@ -23,7 +25,7 @@ export const loadUser = () => (dispatch, getState) => {
         });
 }
 
-//log in user
+//*log in user
 export const login = ({ email, password }) => dispatch => {
     //headers
     const config = {
@@ -46,7 +48,16 @@ export const login = ({ email, password }) => dispatch => {
 
 }
 
-//setup config headers and token
+//*logout user 
+export const logout = () => {
+    return {
+        type: LOGOUT_SUCCESS
+    }
+}
+
+
+
+//!setup config headers and token
 export const tokenConfig = getState => {
     //get token from local storage
     const token = getState().auth.token
