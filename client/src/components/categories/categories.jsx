@@ -8,11 +8,11 @@ class Categories extends Component {
     this.props.GetCategories();
   }
   renderCards() {
-    var data = this.props.categories
+    var data = this.props.categories.items
     if (data) {
       return data.map(el => {
         return (
-          <Card Title={el.category} />
+          <Card key={el._id} Title={el.category} />
         )
       })
     }
@@ -29,7 +29,7 @@ class Categories extends Component {
   }
 }
 const mapStateToProps = (state) => {
-  return { categories: state.Categories[0] };
+  return { categories: state.Categories };
 };
 export default connect(mapStateToProps, { GetCategories })(
   Categories
