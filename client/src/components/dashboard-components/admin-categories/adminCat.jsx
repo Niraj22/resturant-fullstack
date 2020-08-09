@@ -1,31 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { GetCategories } from "../../../actions/categoriesAction";
+import { GetCategories, deleteCategory } from "../../../actions/categoriesAction";
+import CatModal from '../cat-modal/modal'
 import { MdDelete } from "react-icons/md";
-import { ContainerAll, HeadContainer, ButtonAdd, TextContainer, listContainer, List, Category, Icon } from './adminCat.styles'
+import { ContainerAll, HeadContainer, TextContainer, ListContainer, List, Category, Icon } from './adminCat.styles'
 class AdminCat extends Component {
     componentDidMount() {
         this.props.GetCategories();
     }
+    onDeleteClick = (id) => {
+        console.log(id)
+        this.props.deleteCategory(id)
+
+    }
     renderList = () => {
-        if (this.props.categories) {
+        if (this.props.categories.items) {
             return (
                 <ContainerAll>
                     <HeadContainer>
                         <TextContainer>Categories in Inventory</TextContainer>
-                        <ButtonAdd>Add category</ButtonAdd>
+                        <CatModal />
                     </HeadContainer>
-                    <listContainer>
+                    <ListContainer>
                         {
-                            this.props.categories.map(({ _id, category }) => (
+                            this.props.categories.items.map(({ _id, category }) => (
                                 <List key={_id}>
                                     <Category>{category}</Category>
-                                    <Icon>
-                                        <MdDelete color="#40414d" size="2rem" />
+                                    <Icon
+                                        onClick={this.onDeleteClick.bind(this, _id)}
+                                    >
+                                        <MdDelete onClick={this.onDeleteClick.bind(this, _id)} color="#40414d" size="2rem" />
                                     </Icon>
                                 </List>
                             ))}
-                    </listContainer>
+                    </ListContainer>
                 </ContainerAll>
             )
         }
@@ -39,10 +47,8 @@ class AdminCat extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
-        categories: state.Categories[0],
-        isAuthenticated: state.auth.isAuthenticated
+        categories: state.Categories,
     }
 }
-export default connect(mapStateToProps, { GetCategories })(AdminCat)
+export default connect(mapStateToProps, { GetCategories, deleteCategory })(AdminCat)
