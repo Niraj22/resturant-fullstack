@@ -13,4 +13,9 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS"
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS"
 export const REGISTER_FAIL = "REGISTER_FAIL"
 export const LOGOUT_SUCCESS = "LOGOUT_SUCCESS"
+//users action types
+export const USERS_LOADING = "USERS_LOADING"
+export const USERS_LOADED = "USERS_LOADED"
 export const GET_USERS = "GET_USERS";
+export const ADD_USERS = "ADD_USERS"
+export const DELETE_USER = "DELETE_USER"
