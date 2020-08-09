@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Bar, Ulist, Lists, Items, Title } from './sidebar.styles'
-import { FaHome, FaBriefcase, FaConciergeBell, FaUserCircle, FaFolder, FaUserAlt } from "react-icons/fa";
+import { FaHome, FaBriefcase, FaConciergeBell, FaUserCircle, FaFolder, FaUserAlt, FaHistory } from "react-icons/fa";
 class Sidebar extends Component {
     format = { marginRight: "1rem" }
     render() {
@@ -47,6 +47,14 @@ class Sidebar extends Component {
                                 </div>
                                 <Title>
                                     Placed orders
+                                </Title>
+                            </Items>
+                            <Items to='/logout'>
+                                <div>
+                                    <FaHistory size="2.5rem" style={this.format} color="#40414d" />
+                                </div>
+                                <Title>
+                                    Logout
                                 </Title>
                             </Items>
                         </Lists>
