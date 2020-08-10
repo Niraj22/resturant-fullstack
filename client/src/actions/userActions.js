@@ -28,7 +28,7 @@ export const deleteUser = (id) => (dispatch, getState) => {
             type: DELETE_USER,
             payload: id
         }))
-        .catch(err => { console.log(err) })
+        .catch(err => dispatch(returnErrors(err.response.data, err.response.status)))
 }
 
 export const setItemsLoading = () => {
