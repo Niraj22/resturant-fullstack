@@ -9,7 +9,7 @@ app.use(express.json())
 app.use(helmet())
 //DB config
 mongoose.connect('mongodb://localhost/resturant',
-    { useNewUrlParser: true, useUnifiedTopology: true })
+    { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, })
     .then(() => console.log("connected to database"))
     .catch((error) => console.log("not connected to db : ", error))
 
