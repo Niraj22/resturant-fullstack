@@ -16,9 +16,12 @@ export const GetUsers = () => (dispatch, getState) => {
 
 export const addUser = (item) => (dispatch, getState) => {
     axios.post('/api/users', item, tokenConfig(getState))
-        .then(res => dispatch({
-            type: ADD_USER
-        }))
+        .then(res => {
+            dispatch({
+                type: ADD_USER,
+                payload: res.data
+            })
+        })
         .catch(err => dispatch(returnErrors(err.response.data, err.response.status)))
 }
 
