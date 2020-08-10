@@ -7,9 +7,9 @@ import reducers from "./reducers";
 import { loadUser } from './actions/authActions'
 import Start from "./components/start-screen/start";
 import Dashboard from './components/admin-dashboard/dashboard'
-import Menu from "./components/menu/menu";
 import AdminPage from './components/admin-login-page/admin-page'
 import Categories from "./components/categories/categories";
+import AdminCat from './components/dashboard-components/admin-categories/adminCat'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,17 +23,18 @@ class App extends Component {
   }
   render() {
     return (
-      <Provider store={store}>
-        <BrowserRouter>
+      <BrowserRouter>
+        <Provider store={store}>
           <div className="App">
             <Route exact path="/" component={Start} />
-            <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/admin" component={AdminPage} />
             <Route exact path="/categories" component={Categories} />
-            <Route exact path="/menu" component={Menu} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/admincat" component={AdminCat} />
           </div>
-        </BrowserRouter>
-      </Provider>
+        </Provider>
+      </BrowserRouter>
     )
   }
 }
