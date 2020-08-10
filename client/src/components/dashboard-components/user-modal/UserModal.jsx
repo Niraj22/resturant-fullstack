@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { addUser } from '../../../actions/userActions'
 import { Button, Modal, ModalHeader, Form, FormGroup, Label, Input, ModalBody } from 'reactstrap'
 import { ButtonAdd } from './UserModal.styles'
 
@@ -24,7 +25,7 @@ class UserModal extends Component {
             password: this.state.password
         }
         //close the modal
-        console.log(newUser)
+        this.props.addUser(newUser)
         this.toggle()
 
     }
@@ -71,7 +72,7 @@ class UserModal extends Component {
                                     color="light"
                                     style={{ marginTop: '2rem' }}
                                     block
-                                >Add Category</Button>
+                                >Add User</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>
@@ -83,4 +84,4 @@ class UserModal extends Component {
 const mapStateToProps = state => ({
     categories: state.Categories
 })
-export default connect(mapStateToProps)(UserModal)
+export default connect(mapStateToProps, { addUser })(UserModal)
