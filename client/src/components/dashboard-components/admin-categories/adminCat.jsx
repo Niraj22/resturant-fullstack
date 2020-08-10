@@ -9,9 +9,7 @@ class AdminCat extends Component {
         this.props.GetCategories();
     }
     onDeleteClick = (id) => {
-        console.log(id)
         this.props.deleteCategory(id)
-
     }
     renderList = () => {
         if (this.props.categories.items) {
