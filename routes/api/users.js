@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 const auth = require('../../middleware/auth')
 //User model
 const User = require('../../models/User')
+const e = require('express')
 // @route POST api/users
 // @desc Register new user
 // @access public
@@ -26,9 +27,14 @@ router.post('/', auth, (req, res) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                     if (err) throw err
                     newUser.password = hash
+                    const { _id } = newUser
                     newUser.save()
-                        .then(() => res.json({ success: true }))
+                        .then(() => {
+                            User.findById(_id).select('-password')
+                                .then((retUser) => res.json(retUser))
+                        })
                         .catch(() => res.status(404).json({ success: false }))
+
                 })
             })
         })
