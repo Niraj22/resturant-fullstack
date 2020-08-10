@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { GetUsers } from '../../../actions/userActions'
+import { GetUsers, deleteUser } from '../../../actions/userActions'
 import UserModal from '../user-modal/UserModal'
 import { ContainerAll, HeadContainer, TextContainer, ListContainer, List, Category, Icon } from './adminUsers.styles'
 import { MdDelete } from "react-icons/md";
@@ -9,10 +9,10 @@ class AdminUsers extends Component {
         this.props.GetUsers();
     }
     onDeleteClick = (id) => {
-        console.log(id)
+        this.props.deleteUser(id)
     }
     renderList = () => {
-        if (this.props.users.users) {
+        if (this.props.users) {
             return (
                 <ContainerAll>
                     <HeadContainer>
@@ -21,7 +21,7 @@ class AdminUsers extends Component {
                     </HeadContainer>
                     <ListContainer>
                         {
-                            this.props.users.users.map(({ _id, email }) => (
+                            this.props.users.map(({ _id, email }) => (
                                 <List key={_id}>
                                     <Category>{email}</Category>
                                     <Icon
@@ -46,7 +46,7 @@ class AdminUsers extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.users
+        users: state.users.users
     }
 }
-export default connect(mapStateToProps, { GetUsers })(AdminUsers)
+export default connect(mapStateToProps, { GetUsers, deleteUser })(AdminUsers)
