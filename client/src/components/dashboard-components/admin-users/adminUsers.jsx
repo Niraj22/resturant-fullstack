@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { GetUsers, deleteUser } from '../../../actions/userActions'
 import UserModal from '../user-modal/UserModal'
 import { ContainerAll, HeadContainer, TextContainer, ListContainer, List, Category, Icon } from './adminUsers.styles'
@@ -12,6 +13,10 @@ class AdminUsers extends Component {
         this.props.deleteUser(id)
     }
     renderList = () => {
+        if (this.props.isAuthenticated !== true) {
+            this.props.history.push('/admin')
+            return
+        }
         if (this.props.users) {
             return (
                 <ContainerAll>
@@ -46,7 +51,8 @@ class AdminUsers extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        users: state.users.users
+        users: state.users.users,
+        isAuthenticated: state.auth.isAuthenticated
     }
 }
-export default connect(mapStateToProps, { GetUsers, deleteUser })(AdminUsers)
+export default withRouter(connect(mapStateToProps, { GetUsers, deleteUser })(AdminUsers))
