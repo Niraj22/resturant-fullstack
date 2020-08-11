@@ -18,7 +18,7 @@ class CatModal extends Component {
     onSubmit = (event) => {
         event.preventDefault()
         const newCategory = {
-            category: this.state.name
+            category: this.state.name.toLowerCase()
         }
         //add item using add item actions
         this.props.addCategory(newCategory)
