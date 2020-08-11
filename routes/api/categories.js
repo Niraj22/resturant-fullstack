@@ -14,11 +14,17 @@ router.get('/', (req, res) => {
 // @desc post to items
 // @access privare
 router.post('/', auth, (req, res) => {
-    const category = new Category({
-        category: req.body.category
-    })
-    category.save()
-        .then(category => res.json(category))
+    const { category } = req.body
+    Category.findOne({ category })
+        .then(ress => {
+            if (ress) { return res.status(400).json({ message: "category already in the inventory" }) }
+            const newCat = new Category({
+                category
+            })
+            newCat.save()
+                .then(cat => res.json(cat))
+                .catch(() => res.status(404).json({ success: false }))
+        })
 })
 // @route delete api/items
 // @desc delete an  item
