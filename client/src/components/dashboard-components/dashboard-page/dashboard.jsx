@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa";
 import { loadUser } from '../../../actions/authActions'
 import { ReactComponent as Background } from "../../../assets/bg.svg";
@@ -10,6 +11,10 @@ class AdminDashboard extends Component {
         this.props.loadUser();
     }
     renderList = () => {
+        if (this.props.auth.isAuthenticated !== true) {
+            this.props.history.push('/admin')
+            return
+        }
         if (this.props.auth.user) {
             const user = this.props.auth.user.name
             return (
@@ -45,4 +50,4 @@ const mapStateToProps = (state) => {
         auth: state.auth
     }
 }
-export default connect(mapStateToProps, { loadUser })(AdminDashboard)
+export default withRouter(connect(mapStateToProps, { loadUser })(AdminDashboard))
