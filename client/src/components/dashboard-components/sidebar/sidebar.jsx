@@ -11,7 +11,7 @@ const Sidebar = (props) => {
             <Bar>
                 <Ulist>
                     <Lists>
-                        <Items to='/dashboard/admindashboard'>
+                        <Items to='/admindashboard'>
                             <div>
                                 <FaHome size="2.5rem" style={format} color="#40414d" />
                             </div>
@@ -19,7 +19,7 @@ const Sidebar = (props) => {
                                 Dashboard
                                 </Title>
                         </Items>
-                        <Items to='/dashboard/admincategories'>
+                        <Items to='/admincategories'>
                             <div>
                                 <FaFolder size="2.5rem" style={format} color="#40414d" />
                             </div>
@@ -27,7 +27,7 @@ const Sidebar = (props) => {
                                 Categories
                                 </Title>
                         </Items>
-                        <Items to='/dashboard/adminusers'>
+                        <Items to='/adminusers'>
                             <div>
                                 <FaUserAlt size="2.5rem" style={format} color="#40414d" />
                             </div>
