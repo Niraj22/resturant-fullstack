@@ -6,7 +6,6 @@ import reduxThunk from "redux-thunk";
 import reducers from "./reducers";
 import { loadUser } from './actions/authActions'
 import Start from "./components/start-screen/start";
-import Dashboard from './components/admin-dashboard/dashboard'
 import AdminPage from './components/admin-login-page/admin-page'
 import Categories from "./components/categories/categories";
 //!admin routes
