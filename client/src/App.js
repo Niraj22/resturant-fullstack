@@ -8,8 +8,9 @@ import { loadUser } from './actions/authActions'
 import Start from "./components/start-screen/start";
 import AdminPage from './components/admin-login-page/admin-page'
 import Categories from "./components/categories/categories";
-//!admin routes
+//!wrapper component
 import Wrapper from './components/wrapper/wrapper.jsx'
+//!admin routes
 import AdminDashboard from "./components/dashboard-components/dashboard-page/dashboard"
 import AdminCat from './components/dashboard-components/admin-categories/adminCat'
 import AdminUsers from './components/dashboard-components/admin-users/adminUsers'
