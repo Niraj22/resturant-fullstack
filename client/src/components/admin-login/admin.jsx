@@ -10,7 +10,7 @@ class Admin extends Component {
     message: null
   }
   componentDidUpdate(prevProps) {
-    const { error, isAuthenticated } = this.props
+    const { error } = this.props
     if (error !== prevProps.error) {
       //check for register error
       if (error.id === 'LOGIN_FAIL') {
@@ -18,12 +18,6 @@ class Admin extends Component {
       }
       else {
         this.setState({ message: null })
-      }
-    }
-    //if authenticated close modal
-    if (this.state.modal) {
-      if (isAuthenticated) {
-        console.log("it is authenticated")
       }
     }
   }
@@ -40,7 +34,7 @@ class Admin extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        {this.state.message ? <div>{this.state.message}</div> : null}
+        {this.state.message ? <div style={{ color: "red", fontSize: "1.5rem" }}>{this.state.message}</div> : null}
         <FormLabel>
           Username
         </FormLabel>
