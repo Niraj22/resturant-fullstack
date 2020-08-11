@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { GetCategories, deleteCategory } from "../../../actions/categoriesAction";
 import CatModal from '../cat-modal/modal'
 import { MdDelete } from "react-icons/md";
@@ -12,6 +13,10 @@ class AdminCat extends Component {
         this.props.deleteCategory(id)
     }
     renderList = () => {
+        if (this.props.isAuthenticated !== true) {
+            this.props.history.push('/admin')
+            return
+        }
         if (this.props.categories.items) {
             return (
                 <ContainerAll>
@@ -47,6 +52,7 @@ class AdminCat extends Component {
 const mapStateToProps = (state) => {
     return {
         categories: state.Categories,
+        isAuthenticated: state.auth.isAuthenticated
     }
 }
-export default connect(mapStateToProps, { GetCategories, deleteCategory })(AdminCat)
+export default withRouter(connect(mapStateToProps, { GetCategories, deleteCategory })(AdminCat))
