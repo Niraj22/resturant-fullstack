@@ -9,7 +9,7 @@ class AdminPage extends Component {
   styleIcons = { marginBottom: "20px" };
   renderAdmin = () => {
     if (this.props.isAuthenticated === true) {
-      this.props.history.push('/dashboard')
+      this.props.history.push('/admindashboard')
     }
     else {
       return (
