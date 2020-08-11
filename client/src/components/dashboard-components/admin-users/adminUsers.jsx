@@ -13,7 +13,7 @@ class AdminUsers extends Component {
         this.props.deleteUser(id)
     }
     renderList = () => {
-        if (this.props.isAuthenticated !== true) {
+        if (this.props.isAuthenticated.isAuthenticated !== true) {
             this.props.history.push('/admin')
             return
         }
@@ -26,16 +26,18 @@ class AdminUsers extends Component {
                     </HeadContainer>
                     <ListContainer>
                         {
-                            this.props.users.map(({ _id, email }) => (
-                                <List key={_id}>
-                                    <Category>{email}</Category>
-                                    <Icon
-                                        onClick={this.onDeleteClick.bind(this, _id)}
-                                    >
-                                        <MdDelete onClick={this.onDeleteClick.bind(this, _id)} color="#40414d" size="2rem" />
-                                    </Icon>
-                                </List>
-                            ))}
+                            this.props.users.map(({ _id, email }) => {
+                                if (this.props.isAuthenticated.user._id !== _id) {
+                                    return (<List key={_id}>
+                                        <Category>{email}</Category>
+                                        <Icon
+                                            onClick={this.onDeleteClick.bind(this, _id)}
+                                        >
+                                            <MdDelete onClick={this.onDeleteClick.bind(this, _id)} color="#40414d" size="2rem" />
+                                        </Icon>
+                                    </List>)
+                                }
+                            })}
                     </ListContainer>
                 </ContainerAll>
             )
@@ -52,7 +54,7 @@ class AdminUsers extends Component {
 const mapStateToProps = (state) => {
     return {
         users: state.users.users,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth
     }
 }
 export default withRouter(connect(mapStateToProps, { GetUsers, deleteUser })(AdminUsers))
