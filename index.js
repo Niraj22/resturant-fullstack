@@ -16,6 +16,7 @@ mongoose.connect('mongodb://localhost/resturant',
 //use routes
 app.use('/api/categories', require('./routes/api/categories'))
 app.use('/api/users', require('./routes/api/users'))
+app.use('/api/items', require('./routes/api/item'))
 app.use('/api/auth', require('./routes/api/auth'))
 //Serve our static assets
 if (process.env.NODE_ENV === 'production') {
