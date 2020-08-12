@@ -7,15 +7,22 @@ const ItemSchema = new Schema({
         type: String,
         required: true
     },
-    description: {
+    category: {
+        type: String,
+        required: true
+    },
+    slug: {
         type: String,
         required: true,
-        unique: true
     },
-
-    register_date: {
-        type: Date,
-        default: Date.now
+    price: {
+        type: Number,
+        required: true
+    },
+    takeOut: {
+        type: Boolean,
+        default: false,
+        required: true
     }
 })
 module.exports = Item = mongoose.model('item', ItemSchema)
