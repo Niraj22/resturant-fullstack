@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { GetUsers, deleteUser } from '../../../actions/userActions'
 import UserModal from '../user-modal/UserModal'
-import { ContainerAll, HeadContainer, TextContainer } from '../common/common'
+import { ContainerAll, HeadContainer, TextContainer } from '../common/common-header'
 import { ListContainer, List, Category, Icon } from './adminUsers.styles'
 import { MdDelete } from "react-icons/md";
 class AdminUsers extends Component {

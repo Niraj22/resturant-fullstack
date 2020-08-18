@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addUser } from '../../../actions/userActions'
 import { Button, Modal, ModalHeader, Form, FormGroup, Label, Input, ModalBody } from 'reactstrap'
-import { ButtonAdd } from './UserModal.styles'
+import { ButtonAdd } from '../common/common-button'
 
 class UserModal extends Component {
     state = {
