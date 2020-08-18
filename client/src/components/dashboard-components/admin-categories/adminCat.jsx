@@ -4,7 +4,8 @@ import { withRouter } from 'react-router-dom'
 import { GetCategories, deleteCategory } from "../../../actions/categoriesAction";
 import CatModal from '../cat-modal/modal'
 import { MdDelete } from "react-icons/md";
-import { ContainerAll, HeadContainer, TextContainer, ListContainer, List, Category, Icon } from './adminCat.styles'
+import { ContainerAll, HeadContainer, TextContainer } from '../common/common'
+import { ListContainer, List, Category, Icon } from './adminCat.styles'
 class AdminCat extends Component {
     componentDidMount() {
         this.props.GetCategories();
