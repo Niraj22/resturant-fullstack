@@ -24,7 +24,7 @@ router
   .route("/")
   .post(upload.single("file"), (req, res, next) => {
     console.log(req.body);
-    const { name, category, slug, price, takeOut } = req.body;
+    const { name, category, slug, price, takeOut, homeDelivery } = req.body;
     // check for existing images
     Item.findOne({ name })
       .then((item) => {
@@ -35,6 +35,7 @@ router
           name,
           category,
           slug,
+          homeDelivery,
           price,
           takeOut,
           filename: req.file.filename,
