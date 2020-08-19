@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { GetCategories } from "../../../actions/categoriesAction";
+import { PostItem } from "../../../actions/itemActions";
 import { Button, Modal, ModalHeader, Form, FormGroup, FormText, Label, Input, ModalBody, } from 'reactstrap'
 import { ButtonAdd } from '../common/common-button'
 
@@ -10,6 +11,7 @@ class ItemModal extends Component {
         name: '',
         category: '',
         slug: '',
+        homeDelivery: '',
         takeout: '',
         price: '',
         selectedImage: null
@@ -23,32 +25,26 @@ class ItemModal extends Component {
         })
     }
     onChange = (event) => { this.setState({ [event.target.name]: event.target.value }) }
+    onFileChange = (event) => {
+        let file = event.target.files[0]
+        this.setState({ selectedImage: file })
+    }
     onSubmit = (event) => {
         event.preventDefault()
-        const newItem = {
-            name: this.state.name,
-            category: this.state.category,
-            slug: this.state.category,
-            takeout: this.state.takeout,
-            price: this.state.price,
-            selectedImage: this.state.selectedImage
-        }
-        //close the modal
-        console.log(newItem)
+        let file = this.state.selectedImage
+        let formData = new FormData()
+        formData.append('file', file)
+        formData.append('name', this.state.name)
+        formData.append('category', this.state.category)
+        formData.append('slug', this.state.slug)
+        formData.append('homeDelivery', this.state.homeDelivery)
+        formData.append('takeOut', this.state.takeout)
+        formData.append('price', this.state.price)
+        this.props.PostItem(formData)
         this.toggle()
+    }
 
-    }
-    renderCat = () => {
-        const data = this.props.categories.items
-        if (data) {
-            return (
-                <h1> {data.category}</h1>
-            )
-        }
-    }
     render() {
-
-
         return (
             <div>
                 <ButtonAdd
@@ -79,6 +75,7 @@ class ItemModal extends Component {
                                     name="category"
                                     id="category"
                                     placeholder="Select"
+                                    value={this.state.categories}
                                     onChange={this.onChange}
                                 >
                                     <option value="wedding">Wedding</option>
@@ -99,18 +96,34 @@ class ItemModal extends Component {
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="takeout">Takeout</Label>
+                                <Label for="homeDelivery">Home Delivery</Label>
                                 <Input
-                                    type="text"
-                                    name="takeout"
-                                    id="takeout"
-                                    placeholder="Add true or false"
+                                    type="select"
+                                    name="homeDelivery"
+                                    id="homeDelivery"
+                                    value={this.state.homeDelivery}
                                     onChange={this.onChange}
-                                />
+                                >
+                                    <option value="false">False</option>
+                                    <option value="true">True</option>
+                                </Input>
                             </FormGroup>
                             <FormGroup>
-                                <Label for="slug">Slug</Label>
-                                <Input type="textarea" name="slug" id="slug" placeholder="Enter details" />
+                                <Label for="takeout">Takeout</Label>
+                                <Input
+                                    type="select"
+                                    name="takeout"
+                                    id="takeout"
+                                    value={this.state.takeout}
+                                    onChange={this.onChange}
+                                >
+                                    <option value="false">False</option>
+                                    <option value="true">True</option>
+                                </Input>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="slug">Description</Label>
+                                <Input type="textarea" name="slug" id="slug" placeholder="Enter details" onChange={this.onChange} />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="selectedImage">Image</Label>
@@ -118,7 +131,7 @@ class ItemModal extends Component {
                                     type="file"
                                     name="selectedImage"
                                     id="selectedImage"
-                                    onChange={this.onChange}
+                                    onChange={this.onFileChange}
                                 />
                                 <FormText color="muted">
                                     Upload image for the item.
@@ -141,4 +154,4 @@ const mapStateToProps = (state) => {
         categories: state.Categories,
     }
 }
-export default connect(mapStateToProps, { GetCategories })(ItemModal)
+export default connect(mapStateToProps, { GetCategories, PostItem })(ItemModal)
