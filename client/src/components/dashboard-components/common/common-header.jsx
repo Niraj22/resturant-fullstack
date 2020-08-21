@@ -3,6 +3,9 @@ export const ContainerAll = styled.div`
 margin:3rem;
 text-align:center;
 position:relative;
+  @media (max-width: 820px) {
+    margin:1rem;
+  }
 `
 export const HeadContainer = styled.div`
 display:flex;
