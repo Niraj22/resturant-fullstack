@@ -8,7 +8,8 @@ const ItemSchema = new Schema({
     required: true,
   },
   category: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
+    ref: "category",
     required: true,
   },
   slug: {

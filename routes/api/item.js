@@ -95,6 +95,20 @@ router
     }
   });
 
+router.get("/:categoryId", (req, res) => {
+  Item.find({ category: req.params.categoryId })
+    .then((data) => {
+      res.status(200).json({
+        success: true,
+        count: data.length,
+        data,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json(error);
+    });
+});
+
 router.route("/:id").delete((req, res, next) => {
   Item.findById(req.params.id)
     .then((item) => {
