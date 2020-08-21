@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addCategory } from '../../../actions/categoriesAction'
 import { Button, Modal, ModalHeader, Form, FormGroup, Label, Input, ModalBody } from 'reactstrap'
-import { ButtonAdd } from './modal.styles'
+import { ButtonAdd } from '../common/common-button'
 
 class CatModal extends Component {
     state = {

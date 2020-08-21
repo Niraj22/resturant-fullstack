@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const Item = require("../../models/Items");
+const auth = require("../../middleware/auth");
 const upload = require("../../middleware/image-uploader");
 
 const url = "mongodb://localhost/resturant";
@@ -22,23 +23,20 @@ connect.once("open", () => {
 router
   .route("/")
   .post(upload.single("file"), (req, res, next) => {
-    console.log(req.body);
-    const { name, category, slug, price, takeOut } = req.body;
+    const { name, category, slug, price, takeOut, homeDelivery } = req.body;
     // check for existing images
     Item.findOne({ name })
       .then((item) => {
-        console.log(item);
         if (item) {
-          return res.status(200).json({
-            success: false,
-            message: "Item already exists",
-          });
+          return res
+            .status(400)
+            .json({ message: "Item already in the inventory" });
         }
-
         let newItem = new Item({
           name,
           category,
           slug,
+          homeDelivery,
           price,
           takeOut,
           filename: req.file.filename,
@@ -48,14 +46,11 @@ router
         newItem
           .save()
           .then((item) => {
-            res.status(200).json({
-              success: true,
-              item,
-            });
+            res.status(200).json(item);
           })
-          .catch((err) => res.status(500).json(err));
+          .catch((err) => res.status(500).json({ message: "error in server" }));
       })
-      .catch((err) => res.status(500).json(err));
+      .catch((err) => res.status(500).json({ message: "error in server" }));
   })
   .get(async (req, res, next) => {
     let query = Item.find();
@@ -112,7 +107,7 @@ router.route("/:id").delete((req, res, next) => {
             });
           })
           .catch((err) => {
-            return res.status(500).json(err);
+            return res.status(500).json({ message: "error in server" });
           });
       } else {
         res.status(200).json({
@@ -121,7 +116,7 @@ router.route("/:id").delete((req, res, next) => {
         });
       }
     })
-    .catch((err) => res.status(500).json(err));
+    .catch((err) => res.status(500).json({ message: "error in server" }));
 });
 
 router.route("/image/:filename").get((req, res, next) => {
@@ -142,7 +137,7 @@ router.route("/image/:filename").get((req, res, next) => {
       gfs.openDownloadStreamByName(req.params.filename).pipe(res);
     } else {
       res.status(404).json({
-        err: "Not an image",
+        message: "Not an image",
       });
     }
   });

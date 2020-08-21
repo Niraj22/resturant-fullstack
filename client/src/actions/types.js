@@ -19,3 +19,10 @@ export const USERS_LOADED = "USERS_LOADED"
 export const GET_USERS = "GET_USERS";
 export const ADD_USER = "ADD_USER"
 export const DELETE_USER = "DELETE_USER"
+//Item actions
+export const ITEMS_LOADING = "ITEMS_LOADING"
+export const ITEMS_LOADED = "ITEMS_LOADED"
+export const GET_ITEMS = "GET_ITEMS";
+export const GET_ITEM = "GET_ITEM";
+export const ADD_ITEM = "ADD_ITEM "
+export const DELETE_ITEM = "DELETE_ITEM"

@@ -19,6 +19,11 @@ const ItemSchema = new Schema({
     type: Number,
     required: true,
   },
+  homeDelivery: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
   takeOut: {
     type: Boolean,
     default: false,

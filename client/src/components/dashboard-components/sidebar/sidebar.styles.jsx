@@ -4,10 +4,11 @@ export const Container = styled.div`
 `
 export const Bar = styled.nav`
 width:20rem;
-height:100vh;
+min-height:170vh;
 background-color:#e6e6e6;
   @media (max-width: 820px) {
     width:6rem;
+    height:100%;
   }
 `
 export const Ulist = styled.div`
