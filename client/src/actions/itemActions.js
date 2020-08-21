@@ -4,11 +4,13 @@ import { returnErrors } from './errorActions'
 import { tokenConfig } from './authActions'
 export const GetItems = () => dispatch => {
     dispatch(setItemsLoading())
-    axios.get('/api/items').then(res => dispatch({
-        type: GET_ITEMS,
-        payload: res.data
-    }
-    ))
+    axios.get('/api/items').then(res =>
+        dispatch({
+            type: GET_ITEMS,
+            payload: res.data
+        }
+        )
+    )
         .catch(err => dispatch(returnErrors(err.response.data, err.response.status)))
 }
 export const PostItem = (item) => (dispatch, getState) => {
