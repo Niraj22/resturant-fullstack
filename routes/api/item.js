@@ -23,7 +23,7 @@ connect.once("open", () => {
 router
   .route("/")
   .post(upload.single("file"), (req, res, next) => {
-    console.log(req.body);
+
     const { name, category, slug, price, takeOut, homeDelivery } = req.body;
     // check for existing images
     Item.findOne({ name })
@@ -54,10 +54,9 @@ router
   .get((req, res, next) => {
     Item.find({})
       .then((items) => {
-        res.status(200).json({
-          success: true,
-          items,
-        });
+        res.status(200).json(
+          items
+        );
       })
       .catch((err) => res.status(500).json({ message: "error in server" }));
   });
