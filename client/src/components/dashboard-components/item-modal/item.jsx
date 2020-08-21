@@ -78,11 +78,12 @@ class ItemModal extends Component {
                                     value={this.state.categories}
                                     onChange={this.onChange}
                                 >
-                                    <option value="wedding">Wedding</option>
-                                    <option value="engagement">Engagement</option>
-                                    <option value="event">Event</option>
-                                    <option value="family">Family</option>
-                                    <option value="potriat">Potriat</option>
+                                    <option value="appetizers">appetizers</option>
+                                    <option value="breakfast">breakfast</option>
+                                    <option value="main-menu">main-menu</option>
+                                    <option value="dessert">dessert</option>
+                                    <option value="beverage">beverage</option>
+                                    <option value="special">special</option>
                                 </Input>
                             </FormGroup>
                             <FormGroup>
