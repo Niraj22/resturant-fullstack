@@ -57,15 +57,47 @@ router
       })
       .catch((err) => res.status(500).json(err));
   })
-  .get((req, res, next) => {
-    Item.find({})
-      .then((items) => {
-        res.status(200).json({
-          success: true,
-          items,
-        });
-      })
-      .catch((err) => res.status(500).json(err));
+  .get(async (req, res, next) => {
+    let query = Item.find();
+    const total = await Item.countDocuments();
+    const pagination = {};
+    //Pagination
+    if (req.query.page) {
+      const page = parseInt(req.query.page, 10) || 1;
+      const limit = parseInt(req.query.limit, 10) || 1;
+      const startIndex = (page - 1) * limit;
+      const endIndex = page * limit;
+      query = query.skip(startIndex).limit(limit);
+      //Pagination result
+
+      if (endIndex < total) {
+        pagination.next = {
+          page: page + 1,
+          limit,
+        };
+      }
+
+      if (startIndex > 0) {
+        pagination.prev = {
+          page: page - 1,
+          limit,
+        };
+      }
+    }
+    try {
+      const results = await query;
+
+      return res.status(200).json({
+        success: true,
+        count: results.length,
+        pagination: pagination,
+        data: results,
+        total,
+      });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json(error);
+    }
   });
 
 router.route("/:id").delete((req, res, next) => {
