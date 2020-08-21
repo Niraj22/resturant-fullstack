@@ -7,7 +7,7 @@ width:20rem;
 min-height:170vh;
 background-color:#e6e6e6;
   @media (max-width: 820px) {
-    width:6rem;
+    width:5rem;
     height:100%;
   }
 `
