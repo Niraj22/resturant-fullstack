@@ -29,6 +29,21 @@ class ItemModal extends Component {
         let file = event.target.files[0]
         this.setState({ selectedImage: file })
     }
+    renderOption = () => {
+        const data = this.props.categories.items
+        if (data) {
+            return (
+                data.map(el => {
+                    return (
+                        <>
+                            <option key={el._id} value={el.category}>{el.category}</option>
+                        </>
+                    )
+                })
+            )
+        }
+
+    }
     onSubmit = (event) => {
         event.preventDefault()
         let file = this.state.selectedImage
@@ -78,12 +93,7 @@ class ItemModal extends Component {
                                     value={this.state.categories}
                                     onChange={this.onChange}
                                 >
-                                    <option value="appetizers">appetizers</option>
-                                    <option value="breakfast">breakfast</option>
-                                    <option value="main-menu">main-menu</option>
-                                    <option value="dessert">dessert</option>
-                                    <option value="beverage">beverage</option>
-                                    <option value="special">special</option>
+                                    {this.renderOption()}
                                 </Input>
                             </FormGroup>
                             <FormGroup>
