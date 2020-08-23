@@ -36,7 +36,7 @@ class ItemModal extends Component {
                 data.map(el => {
                     return (
                         <>
-                            <option key={el._id} value={el.category}>{el.category}</option>
+                            <option key={el._id} value={el._id} onChange={this.onChange}>{el.category}</option>
                         </>
                     )
                 })
@@ -90,7 +90,7 @@ class ItemModal extends Component {
                                     name="category"
                                     id="category"
                                     placeholder="Select"
-                                    value={this.state.categories}
+                                    value={this.state.category}
                                     onChange={this.onChange}
                                 >
                                     {this.renderOption()}
