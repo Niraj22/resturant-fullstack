@@ -11,11 +11,44 @@ class AdminItems extends Component {
     componentDidMount() {
         this.props.GetItems()
     }
+    pageHandler = () => {
+        if (this.props.items) {
+            const page = this.props.items.pagination
+            if (page.next && page.prev) {
+                return (
+                    <div>
+                        <CtaButton style={{ marginRight: "2rem" }} onClick={() => {
+                            this.props.GetItems(page.prev.page)
+                        }}>Previous</CtaButton>
+                        <CtaButton onClick={() => {
+                            this.props.GetItems(page.next.page)
+                        }}>Load More</CtaButton>
+                    </div>
+                )
+            }
+            if (page.prev) {
+                return (
+                    <CtaButton onClick={() => {
+                        this.props.GetItems(page.prev.page)
+                    }}>Previous</CtaButton>
+                )
+            }
+            else if (page.next) {
+                return (
+                    <CtaButton onClick={() => {
+                        this.props.GetItems(page.next.page)
+                    }}>Load More</CtaButton>
+                )
+            }
+        }
+
+    }
     renderList = () => {
         if (this.props.isAuthenticated !== true) {
             this.props.history.push('/admin')
             return
         }
+
         if (this.props.items.items) {
             const data = this.props.items.items
             return (
@@ -32,7 +65,7 @@ class AdminItems extends Component {
                         }
                     </ItemsContainer>
                     <div style={{ marginTop: "2rem" }}>
-                        <CtaButton to="/">Load More</CtaButton>
+                        {this.pageHandler()}
                     </div>
                 </ContainerAll>
             )
