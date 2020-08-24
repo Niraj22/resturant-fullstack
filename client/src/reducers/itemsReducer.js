@@ -5,7 +5,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
         case GET_ITEMS:
-            return { ...state, items: action.payload, loading: false }
+            return { ...state, items: action.payload.data, loading: false, count: action.payload.count, pagination: action.payload.pagination, total: action.payload.total }
         case ADD_ITEM:
             return { ...state, items: [...state.items, action.payload], loading: false }
         case DELETE_ITEM:
