@@ -12,7 +12,7 @@ class Categories extends Component {
     if (data) {
       return data.map(el => {
         return (
-          <Card key={el._id} Title={el.category} />
+          <Card key={el._id} Title={el.category} catKey={el._id} />
         )
       })
     }
