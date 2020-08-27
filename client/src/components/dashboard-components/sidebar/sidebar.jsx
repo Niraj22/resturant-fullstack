@@ -13,7 +13,7 @@ const Sidebar = (props) => {
                     <Lists>
                         <Items to='/admindashboard'>
                             <div>
-                                <FaHome size="2.5rem" style={format} color="#40414d" />
+                                <FaHome size="2rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Dashboard
@@ -21,7 +21,7 @@ const Sidebar = (props) => {
                         </Items>
                         <Items to='/admincategories'>
                             <div>
-                                <FaFolder size="2.5rem" style={format} color="#40414d" />
+                                <FaFolder size="2rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Categories
@@ -29,7 +29,7 @@ const Sidebar = (props) => {
                         </Items>
                         <Items to='/adminusers'>
                             <div>
-                                <FaUserAlt size="2.5rem" style={format} color="#40414d" />
+                                <FaUserAlt size="2rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Users
@@ -37,7 +37,7 @@ const Sidebar = (props) => {
                         </Items>
                         <Items to='/adminitems' >
                             <div>
-                                <FaConciergeBell size="2.5rem" style={format} color="#40414d" />
+                                <FaConciergeBell size="2rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Items
@@ -45,7 +45,7 @@ const Sidebar = (props) => {
                         </Items>
                         <Items to='/adminorders'>
                             <div>
-                                <FaBriefcase size="2.5rem" style={format} color="#40414d" />
+                                <FaBriefcase size="2rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Placed orders
@@ -55,7 +55,7 @@ const Sidebar = (props) => {
                             props.logout()
                         }} to="/">
                             <div>
-                                <FaHistory size="2.5rem" style={format} color="#40414d" />
+                                <FaHistory size="2rem" style={format} color="#40414d" />
                             </div>
                             <Title>
                                 Logout
