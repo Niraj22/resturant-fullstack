@@ -26,3 +26,7 @@ export const GET_ITEMS = "GET_ITEMS";
 export const GET_ITEM = "GET_ITEM";
 export const ADD_ITEM = "ADD_ITEM "
 export const DELETE_ITEM = "DELETE_ITEM"
+//selected items
+export const SELECTED_ITEMS_LOADING = "SELECTED_ITEMS_LOADING"
+export const SELECTED_ITEMS_LOADED = "SELECTED_ITEMS_LOADED"
+export const GET_SELECTED_ITEMS = "GET_SELECTED__ITEMS";
