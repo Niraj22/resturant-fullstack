@@ -8,6 +8,7 @@
     "cra-template": "1.0.3",
     "http-proxy-middleware": "^1.0.5",
     "loadsh": "^0.0.4",
+    "local-storage": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
