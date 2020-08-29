@@ -33,9 +33,9 @@ export default class Card extends Component {
       <Container>
         <Category>
           {this.renderList()}
-          <LinkMenu to={this.props.Title}>{this.props.Title}</LinkMenu >
+          <LinkMenu to={{ pathname: `/menu`, keyProp: this.props.catKey }}>{this.props.Title}</LinkMenu>
         </Category>
-      </Container>
+      </Container >
     );
   }
 }
