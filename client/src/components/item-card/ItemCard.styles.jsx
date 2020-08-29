@@ -1,4 +1,8 @@
 import styled from 'styled-components'
+export const MainContainer = styled.div`
+display:flex;
+align-items:center;
+`
 export const Container = styled.div`
 margin:1rem;
 min-width:33rem;
