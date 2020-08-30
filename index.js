@@ -25,7 +25,7 @@ mongoose
   .catch((error) => console.log("not connected to db : ", error));
 
 //use routes
-app.use("/", express.static("client/build"));
+app.use("/", express.static("build"));
 app.use((req, res, next) => {
   //console.log(req.headers["user-agent"]);
   res.header("Access-Control-Allow-Origin", "*");
