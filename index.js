@@ -4,6 +4,7 @@ const app = express();
 const helmet = require("helmet");
 const config = require("config");
 const db = config.get("mongoURI");
+const path = require("path");
 //body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
