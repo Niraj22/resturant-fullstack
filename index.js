@@ -7,10 +7,10 @@ const db = config.get("mongoURI");
 const path = require("path");
 const cors = require("cors");
 //body-parser
-
-app.use("/", express.static(path.join(__dirname, "build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use("/", express.static(path.join(__dirname, "build")));
+
 // app.use(fileupload());
 
 //use helmet
