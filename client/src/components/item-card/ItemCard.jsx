@@ -1,4 +1,5 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { MainContainer, Container, Title, Description, Image, Stats, Topic } from './ItemCard.styles'
 import { FaTimes, FaCheck, FaTags } from 'react-icons/fa'
 function ItemCard(props) {
