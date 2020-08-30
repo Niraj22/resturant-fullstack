@@ -25,6 +25,7 @@ mongoose
   .catch((error) => console.log("not connected to db : ", error));
 
 //use routes
+app.use("/", express.static("build"));
 app.use((req, res, next) => {
   //console.log(req.headers["user-agent"]);
   res.header("Access-Control-Allow-Origin", "*");
@@ -44,12 +45,12 @@ app.use("/api/items", require("./routes/api/item"));
 app.use("/api/auth", require("./routes/api/auth"));
 
 //Serve our static assets
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("client/build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+//   });
+// }
 const port = process.env.PORT || 5001;
 app.listen(port, () => {
   console.log(`server started on port ${port}`);
