@@ -7,6 +7,8 @@ const db = config.get("mongoURI");
 const path = require("path");
 const cors = require("cors");
 //body-parser
+
+app.use("/", express.static(path.join(__dirname, "build")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(fileupload());
@@ -27,7 +29,7 @@ mongoose
   .catch((error) => console.log("not connected to db : ", error));
 
 //use routes
-app.use("/", express.static(path.join(__dirname, "build")));
+
 app.use("/api/categories", require("./routes/api/categories"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/items", require("./routes/api/item"));
