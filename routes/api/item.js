@@ -3,9 +3,11 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Item = require("../../models/Items");
 const auth = require("../../middleware/auth");
+const config = require("config");
+const db = config.get("mongoURI");
 const upload = require("../../middleware/image-uploader");
 
-const url = "mongodb://localhost/resturant";
+const url = db;
 const connect = mongoose.createConnection(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
