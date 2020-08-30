@@ -2,13 +2,15 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 const path = require("path");
 const crypto = require("crypto");
+const config = require('config');
+const db = config.get('mongoURI');
 /* 
     GridFs Configuration
 */
 
 // create storage engine
 const storage = new GridFsStorage({
-  url: "mongodb://localhost/resturant",
+  url: db,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     return new Promise((resolve, reject) => {

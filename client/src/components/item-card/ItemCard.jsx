@@ -1,7 +1,8 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { MainContainer, Container, Title, Description, Image, Stats, Topic } from './ItemCard.styles'
 import { FaTimes, FaCheck, FaTags } from 'react-icons/fa'
-export default function ItemCard(props) {
+function ItemCard(props) {
     const { name, filename, homeDelivery, slug, price, takeOut } = props.data
     return (
         <MainContainer>
@@ -19,3 +20,10 @@ export default function ItemCard(props) {
         </MainContainer>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        isAuthenticated: state.auth.isAuthenticated
+    }
+}
+
+export default connect(mapStateToProps)(ItemCard)

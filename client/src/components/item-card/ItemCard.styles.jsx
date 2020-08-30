@@ -10,6 +10,7 @@ min-height:45rem;
 padding:2rem;
 display:flex;
 flex-direction:column;
+align-items:center;
 box-shadow: hsla(0, 0%, 0%, 0.15) 0px 4px 12px 0px;
  &:hover {
     -moz-transform: translate(-2px, -2px);
@@ -49,9 +50,9 @@ border-bottom:0.4px solid grey;
 `
 export const Stats = styled.div`
 display:flex;
-justify-content:space-around;
 `
 export const Topic = styled.div`
   color:#40414d;
   font-size:1.4rem;
+  margin-left:1rem;
 `
