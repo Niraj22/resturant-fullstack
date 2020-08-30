@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, HashRouter } from "react-router-dom";
+import { Route, BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
@@ -30,7 +30,7 @@ class App extends Component {
   }
   render() {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <Provider store={store}>
           <div className="App">
             <Route exact path="/" component={Start} />
@@ -52,7 +52,7 @@ class App extends Component {
             <Route exact path="/adminorders" component={Wrapper(Orders)} />
           </div>
         </Provider>
-      </HashRouter>
+      </BrowserRouter>
     );
   }
 }
