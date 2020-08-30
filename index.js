@@ -5,12 +5,14 @@ const helmet = require("helmet");
 const config = require("config");
 const db = config.get("mongoURI");
 const path = require("path");
+const cors = require("cors");
 //body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(fileupload());
 
 //use helmet
+app.use(cors());
 app.use(helmet());
 //DB config
 mongoose
@@ -26,19 +28,6 @@ mongoose
 
 //use routes
 app.use("/", express.static("build"));
-app.use((req, res, next) => {
-  //console.log(req.headers["user-agent"]);
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT, PATCH");
-    return res.status(200).json({});
-  }
-  next();
-});
 app.use("/api/categories", require("./routes/api/categories"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/items", require("./routes/api/item"));
