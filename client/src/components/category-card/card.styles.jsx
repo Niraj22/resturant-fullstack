@@ -37,6 +37,6 @@ export const Category = styled.div`
   -webkit-text-fill-color: transparent;
 `;
 
-export const LinkMenu = styled.a`
+export const LinkMenu = styled(Link)`
 font-size:1.9rem;
 `
