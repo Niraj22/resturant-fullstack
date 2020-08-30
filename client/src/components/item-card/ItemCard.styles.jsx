@@ -37,7 +37,6 @@ export const Title = styled.h2`
 
 export const Description = styled.p`
 width:30.3rem;
-height:15.3rem;
 margin-top:1rem;
 margin-bottom:1.5rem;
 color:hsl(0, 0%, 46%);
