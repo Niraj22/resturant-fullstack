@@ -27,7 +27,7 @@ mongoose
   .catch((error) => console.log("not connected to db : ", error));
 
 //use routes
-app.use("/", express.static(path.join(__dirname, "build")));
+app.use("/", express.static(path.join(__dirname, "build/index.html")));
 app.use("/api/categories", require("./routes/api/categories"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/items", require("./routes/api/item"));
