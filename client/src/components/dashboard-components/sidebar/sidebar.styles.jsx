@@ -7,7 +7,7 @@ width:20rem;
 min-height:170vh;
 background-color:#e6e6e6;
   @media (max-width: 820px) {
-    width:5rem;
+    width:4rem;
     height:100%;
   }
 `
@@ -19,9 +19,7 @@ export const Items = styled(Link)`
 display:flex;
 cursor: pointer;
 text-decoration:none;
-padding-top:1rem;
-padding-left:2rem;
-padding-bottom:1rem;
+padding:1rem;
 align-items:center;
 &:hover {
     background-color:whitesmoke; 

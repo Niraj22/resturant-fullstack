@@ -16,6 +16,7 @@ import AdminCat from './components/dashboard-components/admin-categories/adminCa
 import AdminUsers from './components/dashboard-components/admin-users/adminUsers'
 import AdminItems from './components/dashboard-components/admin-items/adminItems'
 import Orders from './components/dashboard-components/placed-orders/orders'
+import Selected from './components/selected-items/selected'
 import "./App.css";
 import 'bootstrap/dist/css/bootstrap.min.css'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -35,6 +36,7 @@ class App extends Component {
             <Route exact path="/" component={Start} />
             <Route exact path="/admin" component={AdminPage} />
             <Route exact path="/categories" component={Categories} />
+            <Route path="/menu" component={Selected} />
             <Route exact path="/admindashboard" component={Wrapper(AdminDashboard)} />
             <Route exact path="/admincategories" component={Wrapper(AdminCat)} />
             <Route exact path="/adminusers" component={Wrapper(AdminUsers)} />
