@@ -1,2 +1,8 @@
 node_modules/
 .env
+config/default.json
+testImage.html
+client
+client/
+
+

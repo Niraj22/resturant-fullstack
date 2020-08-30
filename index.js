@@ -2,7 +2,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 const helmet = require("helmet");
-
+const config = require('config');
+const db = config.get('mongoURI');
 //body-parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -12,15 +13,29 @@ app.use(express.urlencoded({ extended: false }));
 app.use(helmet());
 //DB config
 mongoose
-  .connect("mongodb://localhost/resturant", {
+  .connect(db, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
+     useCreateIndex: true,
+      useFindAndModify: false
   })
   .then(() => console.log("connected to database"))
   .catch((error) => console.log("not connected to db : ", error));
 
 //use routes
+app.use('/', express.static('build'));
+app.use((req, res, next) => {
+	//console.log(req.headers["user-agent"]);
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    ;
+    if (req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, PATCH');
+        return res.status(200).json({});
+    }
+    next();
+});
 app.use("/api/categories", require("./routes/api/categories"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/items", require("./routes/api/item"));

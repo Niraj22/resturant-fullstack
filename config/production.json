@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://r-n:r-restaurant-n@restaurant.joupl.mongodb.net/restaurant?retryWrites=true&w=majority",
+  "jwtSecret": "nl_ohjwqcios"
+}
