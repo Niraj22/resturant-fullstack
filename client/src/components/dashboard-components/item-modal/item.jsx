@@ -67,7 +67,9 @@ class ItemModal extends Component {
                 >Add Item</ButtonAdd>
                 <Modal
                     isOpen={this.state.modal}
-                    toggle={this.toggle}>
+                    toggle={this.toggle}
+                    centered
+                >
                     <ModalHeader toggle={this.toggle}>
                         Add To List Of Admin Users
                     </ModalHeader>
