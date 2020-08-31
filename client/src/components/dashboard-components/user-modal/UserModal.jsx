@@ -37,8 +37,8 @@ class UserModal extends Component {
                 >Add user</ButtonAdd>
                 <Modal
                     isOpen={this.state.modal}
-                    toggle={this.toggle}>
-                    <ModalHeader toggle={this.toggle}>
+                    toggle={this.toggle} centered>
+                    <ModalHeader toggle={this.toggle} >
                         Add To List Of Admin Users
                     </ModalHeader>
                     <ModalBody>

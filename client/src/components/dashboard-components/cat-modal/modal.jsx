@@ -34,7 +34,8 @@ class CatModal extends Component {
                 >Add category</ButtonAdd>
                 <Modal
                     isOpen={this.state.modal}
-                    toggle={this.toggle}>
+                    toggle={this.toggle}
+                    centered>
                     <ModalHeader toggle={this.toggle}>
                         Add to Categories
                     </ModalHeader>
