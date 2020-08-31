@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, BrowserRouter } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import reduxThunk from "redux-thunk";
@@ -29,30 +29,29 @@ class App extends Component {
     store.dispatch(loadUser());
   }
   render() {
+    const { isAuthenticated } = store.getState()
     return (
-      <BrowserRouter>
-        <Provider store={store}>
-          <div className="App">
-            <Route exact path="/" component={Start} />
-            <Route exact path="/admin" component={AdminPage} />
-            <Route exact path="/categories" component={Categories} />
-            <Route path="/menu" component={Selected} />
-            <Route
-              exact
-              path="/admindashboard"
-              component={Wrapper(AdminDashboard)}
-            />
-            <Route
-              exact
-              path="/admincategories"
-              component={Wrapper(AdminCat)}
-            />
-            <Route exact path="/adminusers" component={Wrapper(AdminUsers)} />
-            <Route exact path="/adminitems" component={Wrapper(AdminItems)} />
-            <Route exact path="/adminorders" component={Wrapper(Orders)} />
-          </div>
-        </Provider>
-      </BrowserRouter>
+      <Provider store={store}>
+        <div className="App">
+          <Route exact path="/" component={Start} />
+          <Route exact path="/admin" render={() => (isAuthenticated) ? (<Redirect to='/admindashboard' />) : (<AdminPage />)} />
+          <Route exact path="/categories" component={Categories} />
+          <Route path="/menu" component={Selected} />
+          <Route
+            exact
+            path="/admindashboard"
+            component={Wrapper(AdminDashboard)}
+          />
+          <Route
+            exact
+            path="/admincategories"
+            component={Wrapper(AdminCat)}
+          />
+          <Route exact path="/adminusers" component={Wrapper(AdminUsers)} />
+          <Route exact path="/adminitems" component={Wrapper(AdminItems)} />
+          <Route exact path="/adminorders" component={Wrapper(Orders)} />
+        </div>
+      </Provider>
     );
   }
 }
