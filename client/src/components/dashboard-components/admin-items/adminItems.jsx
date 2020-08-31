@@ -4,6 +4,8 @@ import { ContainerAll, HeadContainer, TextContainer } from '../common/common-hea
 import { GetItems } from '../../../actions/itemActions'
 import { connect } from 'react-redux'
 import { ItemsContainer } from './adminItems.styles'
+import Loader from '../../loader/loader'
+import { LoadingContainer } from '../common/loadingContainer'
 import CtaButton from '../../cta-buttons/buttons'
 import ItemModal from '../item-modal/item'
 import ItemCard from '../../item-card/ItemCard'
@@ -12,45 +14,47 @@ class AdminItems extends Component {
         this.props.GetItems()
     }
     pageHandler = () => {
-        if (this.props.items) {
-            const page = this.props.items.pagination
-            if (page.next && page.prev) {
-                return (
-                    <div>
-                        <CtaButton style={{ marginRight: "2rem" }} onClick={() => {
-                            this.props.GetItems(page.prev.page)
-                        }}>Previous</CtaButton>
-                        <CtaButton onClick={() => {
-                            this.props.GetItems(page.next.page)
-                        }}>Load More</CtaButton>
-                    </div>
-                )
-            }
-            if (page.prev) {
-                return (
-                    <CtaButton onClick={() => {
+        const page = this.props.items.pagination
+        if (page.next && page.prev) {
+            return (
+                <div>
+                    <CtaButton style={{ marginRight: "2rem" }} onClick={() => {
                         this.props.GetItems(page.prev.page)
                     }}>Previous</CtaButton>
-                )
-            }
-            else if (page.next) {
-                return (
                     <CtaButton onClick={() => {
                         this.props.GetItems(page.next.page)
                     }}>Load More</CtaButton>
-                )
-            }
+                </div>
+            )
         }
-
+        if (page.prev) {
+            return (
+                <CtaButton onClick={() => {
+                    this.props.GetItems(page.prev.page)
+                }}>Previous</CtaButton>
+            )
+        }
+        else if (page.next) {
+            return (
+                <CtaButton onClick={() => {
+                    this.props.GetItems(page.next.page)
+                }}>Load More</CtaButton>
+            )
+        }
     }
     renderList = () => {
-        if (this.props.isAuthenticated !== true) {
-            this.props.history.push('/admin')
-            return
+        if (this.props.items.loading && this.props.isAuthenticated.isLoading) {
+            return (
+                <LoadingContainer>
+                    <Loader />
+                </LoadingContainer>
+            )
         }
-
-        if (this.props.items.items) {
-            const data = this.props.items.items
+        if (this.props.isAuthenticated.isAuthenticated !== true) {
+            return (null)
+        }
+        else if (this.props.items.items) {
+            const { items } = this.props.items
             return (
                 <ContainerAll>
                     <HeadContainer>
@@ -59,7 +63,7 @@ class AdminItems extends Component {
                     </HeadContainer>
                     <ItemsContainer>
                         {
-                            data.map(el => (
+                            items.map(el => (
                                 <ItemCard key={el._id} data={el} />
                             ))
                         }
@@ -69,7 +73,9 @@ class AdminItems extends Component {
                     </div>
                 </ContainerAll>
             )
+
         }
+        return null
     }
     render() {
         return (
@@ -82,7 +88,7 @@ class AdminItems extends Component {
 const mapStateToProps = (state) => {
     return {
         items: state.items,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth
     }
 }
 export default withRouter(connect(mapStateToProps, { GetItems })(AdminItems))

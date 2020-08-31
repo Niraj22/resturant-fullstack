@@ -3,22 +3,47 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { GetCategories, deleteCategory } from "../../../actions/categoriesAction";
 import CatModal from '../cat-modal/modal'
+import DeleteModal from '../delete-confirm/delete-modal'
 import { MdDelete } from "react-icons/md";
+import Loader from '../../loader/loader'
+import { LoadingContainer } from '../common/loadingContainer'
 import { ContainerAll, HeadContainer, TextContainer } from '../common/common-header'
 import { ListContainer, List, Category, Icon } from './adminCat.styles'
 class AdminCat extends Component {
+    state = {
+        deleteID: null,
+        modalShow: false
+    }
+    handleShowModal = (id) => {
+        this.setState({ modalShow: true, deleteID: id });
+    }
+    toggle = () => {
+        this.setState({
+            modalShow: !this.state.modalShow
+        })
+    }
+    handleCloseModal = () => {
+        this.setState({ modalShow: false });
+    }
     componentDidMount() {
         this.props.GetCategories();
     }
-    onDeleteClick = (id) => {
-        this.props.deleteCategory(id)
+    onDelete = () => {
+        this.props.deleteCategory(this.state.deleteID)
+        this.setState({ modalShow: false })
     }
     renderList = () => {
-        if (this.props.isAuthenticated !== true) {
-            this.props.history.push('/admin')
-            return
+        if (this.props.categories.loading && this.props.isAuthenticated.isLoading) {
+            return (
+                <LoadingContainer>
+                    <Loader />
+                </LoadingContainer>
+            )
         }
-        if (this.props.categories.items) {
+        if (this.props.isAuthenticated.isAuthenticated !== true) {
+            return (null)
+        }
+        else if (this.props.categories.items) {
             return (
                 <ContainerAll>
                     <HeadContainer>
@@ -31,15 +56,23 @@ class AdminCat extends Component {
                                 <List key={_id}>
                                     <Category>{category}</Category>
                                     <Icon
-                                        onClick={this.onDeleteClick.bind(this, _id)}
+                                        onClick={(e) => { this.handleShowModal(_id) }}
                                     >
-                                        <MdDelete onClick={this.onDeleteClick.bind(this, _id)} color="#40414d" size="2rem" />
+                                        <MdDelete color="#40414d" size="2rem" />
                                     </Icon>
                                 </List>
                             ))}
                     </ListContainer>
+                    <DeleteModal
+                        toggle={this.toggle}
+                        modalStatus={this.state.modalShow}
+                        showModal={this.handleShowModal}
+                        closeModal={this.handleCloseModal}
+                        handleClick={this.onDelete}
+                    />
                 </ContainerAll>
             )
+
         }
     }
     render() {
@@ -53,7 +86,7 @@ class AdminCat extends Component {
 const mapStateToProps = (state) => {
     return {
         categories: state.Categories,
-        isAuthenticated: state.auth.isAuthenticated
+        isAuthenticated: state.auth
     }
 }
 export default withRouter(connect(mapStateToProps, { GetCategories, deleteCategory })(AdminCat))
