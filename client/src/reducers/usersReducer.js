@@ -1,9 +1,14 @@
-import { USERS_LOADED, ADD_USER, DELETE_USER } from "../actions/types";
+import { USERS_LOADED, ADD_USER, DELETE_USER, USERS_LOADING } from "../actions/types";
 const initialState = {
     loading: false
 }
 export default (state = initialState, action) => {
     switch (action.type) {
+        case USERS_LOADING:
+            return {
+                ...state,
+                loading: true
+            }
         case USERS_LOADED:
             return { ...state, users: action.payload, loading: false }
 
