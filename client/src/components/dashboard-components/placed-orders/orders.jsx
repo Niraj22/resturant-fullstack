@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-
+import Loader from '../../loader/loader'
+import { LoadingContainer } from '../common/loadingContainer'
 export default class Orders extends Component {
     render() {
         return (
-            <div>
-                <h1>Placed orders</h1>
-            </div>
+            <LoadingContainer>
+                <Loader />
+            </LoadingContainer>
         )
     }
 }
