@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa";
 import { loadUser } from '../../../actions/authActions'
+import Loader from '../../loader/loader'
+import { LoadingContainer } from '../common/loadingContainer'
 import { ReactComponent as Background } from "../../../assets/bg.svg";
 import { ContainerAll, Icon, TextContainer } from './dashboard.styles'
 class AdminDashboard extends Component {
@@ -15,7 +17,14 @@ class AdminDashboard extends Component {
             this.props.history.push('/admin')
             return
         }
-        if (this.props.auth.user) {
+        if (this.props.auth.isLoading) {
+            return (
+                <LoadingContainer>
+                    <Loader />
+                </LoadingContainer>
+            )
+        }
+        else {
             const user = this.props.auth.user.name
             return (
                 <ContainerAll>
@@ -32,9 +41,6 @@ class AdminDashboard extends Component {
                     <TextContainer>{`Welcome ${user} To Your Dashboard`}</TextContainer>
                 </ContainerAll>
             )
-        }
-        else {
-            return (<TextContainer>Error loading user</TextContainer>)
         }
     }
     render() {
