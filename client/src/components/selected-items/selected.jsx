@@ -5,6 +5,8 @@ import ls from 'local-storage';
 import { ItemsContainer } from '../dashboard-components/admin-items/adminItems.styles'
 import { ContainerAll } from '../dashboard-components/common/common-header'
 import { GetItems } from '../../actions/selectedItemsActions'
+import { LoadingContainer } from '../dashboard-components/common/loadingContainer'
+import Loader from '../loader/loader'
 import CtaButton from '../cta-buttons/buttons'
 class Selected extends Component {
     componentDidMount() {
@@ -53,6 +55,13 @@ class Selected extends Component {
     }
 
     renderList = () => {
+        if (this.props.items.loading) {
+            return (
+                <LoadingContainer>
+                    <Loader />
+                </LoadingContainer>
+            )
+        }
         if (this.props.items.items) {
             const data = this.props.items.items
             return (
